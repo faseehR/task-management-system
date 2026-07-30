@@ -1,148 +1,94 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaArrowLeft } from "react-icons/fa";
+import React, { useState } from 'react';
 
-function Login() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+const Login = () => {
+  const [email, setEmail] = useState('johndoe@gmail.com');
+  const [password, setPassword] = useState('123456');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempted with:", { email, password });
-    // After successful login, navigate to home
-    navigate("/");
+    console.log('Login attempt:', { email, password });
+    // API call will go here
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative"
-         style={{ backgroundColor: "var(--primary-color)" }}>
-      
-      {/* Back to Home Button - Top Left */}
-      <button
-        onClick={() => navigate("/")}
-        className="absolute top-6 left-6 sm:top-8 sm:left-8 flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105"
-        style={{
-          backgroundColor: "var(--card-bg)",
-          color: "var(--text-secondary)",
-          border: "1px solid var(--border-color)",
-        }}
-      >
-        <FaArrowLeft size={16} />
-        <span className="text-sm font-medium">Back to Home</span>
-      </button>
-
-      <div className="max-w-lg w-full space-y-8 p-8 sm:p-10 rounded-2xl"
-           style={{
-             backgroundColor: "var(--card-bg)",
-             border: "1px solid var(--border-color)",
-           }}>
-        {/* Header */}
-        <div className="text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold" style={{ color: "var(--text-color)" }}>
-            Welcome Back
-          </h2>
-          <p className="mt-2 text-sm sm:text-base" style={{ color: "var(--text-secondary)" }}>
-            Sign in to your account
+    <div className="flex min-h-screen">
+      {/* LEFT SIDE: dark blue background */}
+      <div className="flex-1 bg-[#0b1a33] flex flex-col items-center justify-center p-6">
+        {/* blue square with white text */}
+        <div className="bg-blue-600 p-8 max-w-xs w-full text-center">
+          <p className="text-white text-lg font-semibold leading-snug">
+            Login Page
+            <br />
+            <span className="font-light text-sm block mt-1">
+              start your journey with us
+            </span>
           </p>
         </div>
+        <div className="mt-6 text-blue-200/40 text-xs">✦</div>
+      </div>
 
-        {/* Login Form */}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {/* Email Field */}
-          <div>
-            <label htmlFor="email" className="block text-sm sm:text-base font-medium mb-2"
-                   style={{ color: "var(--text-color)" }}>
-              Email Address
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
-                <FaEnvelope size={18} className="sm:w-5 sm:h-5" style={{ color: "var(--text-secondary)" }} />
-              </div>
+      {/* RIGHT SIDE: white background */}
+      <div className="flex-1 bg-white flex flex-col items-center justify-center p-6">
+        {/* black square perimeter (border only) */}
+        <div className="w-full max-w-sm border-2 border-black bg-white p-8">
+          <h2 className="text-2xl font-bold text-black text-center mb-1">
+            Login to your account
+          </h2>
+
+          <form onSubmit={handleSubmit} className="mt-5">
+            {/* Email field */}
+            <div className="mt-4">
+              <label htmlFor="email" className="block text-sm font-medium text-black/70 mb-1">
+                Email
+              </label>
               <input
-                id="email"
-                name="email"
                 type="email"
-                autoComplete="email"
-                required
+                id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-lg relative block w-full px-3 sm:px-4 py-3 sm:py-4 pl-10 sm:pl-12 border-2 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] text-sm sm:text-base"
-                style={{
-                  backgroundColor: "var(--primary-color)",
-                  borderColor: "var(--border-color)",
-                  color: "var(--text-color)",
-                }}
-                placeholder="Enter your email"
+                placeholder="you@example.com"
+                className="w-full px-3 py-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                required
               />
             </div>
-          </div>
 
-          {/* Password Field */}
-          <div>
-            <label htmlFor="password" className="block text-sm sm:text-base font-medium mb-2"
-                   style={{ color: "var(--text-color)" }}>
-              Password
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 sm:pl-4 flex items-center pointer-events-none">
-                <FaLock size={18} className="sm:w-5 sm:h-5" style={{ color: "var(--text-secondary)" }} />
-              </div>
+            {/* Password field */}
+            <div className="mt-4">
+              <label htmlFor="password" className="block text-sm font-medium text-black/70 mb-1">
+                Password
+              </label>
               <input
+                type="password"
                 id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                autoComplete="current-password"
-                required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-lg relative block w-full px-3 sm:px-4 py-3 sm:py-4 pl-10 sm:pl-12 pr-10 sm:pr-12 border-2 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] text-sm sm:text-base"
-                style={{
-                  backgroundColor: "var(--primary-color)",
-                  borderColor: "var(--border-color)",
-                  color: "var(--text-color)",
-                }}
-                placeholder="Enter your password"
+                placeholder="••••••••"
+                className="w-full px-3 py-2 border border-gray-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                required
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 sm:pr-4 flex items-center"
-                style={{ color: "var(--text-secondary)" }}
-              >
-                {showPassword ? <FaEyeSlash size={18} className="sm:w-5 sm:h-5" /> : <FaEye size={18} className="sm:w-5 sm:h-5" />}
-              </button>
             </div>
-          </div>
 
-          {/* Login Button */}
-          <button
-            type="submit"
-            className="w-full flex justify-center py-3 sm:py-4 px-4 border border-transparent rounded-lg text-sm sm:text-base font-medium transition-all duration-300 hover:opacity-80 hover:scale-[1.02]"
-            style={{
-              backgroundColor: "var(--secondary-color)",
-              color: "var(--primary-color)",
-            }}
-          >
-            Sign In
-          </button>
+            {/* Blue login button */}
+            <button
+              type="submit"
+              className="w-full mt-6 bg-blue-600 text-white font-medium py-2.5 hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+            >
+              <span>Login</span>
+              <span className="text-sm">→</span>
+            </button>
+          </form>
 
-          {/* Sign Up Link */}
-          <div className="text-center pt-2">
-            <p className="text-sm sm:text-base" style={{ color: "var(--text-secondary)" }}>
-              Don't have an account?{" "}
-              <Link to="/signup" className="font-medium hover:underline"
-                 style={{ color: "#2563eb" }}>
-                Sign up
-              </Link>
-            </p>
-          </div>
-        </form>
+          {/* "Don't have an account?" in black, "Sign up" in blue */}
+          <p className="text-center text-black/80 text-sm mt-5">
+            Don't have an account?{' '}
+            <a href="#" className="text-blue-600 font-medium hover:underline">
+              Sign up
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default Login;

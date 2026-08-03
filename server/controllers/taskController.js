@@ -6,13 +6,7 @@ const asyncHandler = require('../utils/asyncHandler');
 const PRIORITIES = ['Low', 'Medium', 'High'];
 const STATUSES = ['Pending', 'In Progress', 'Completed'];
 
-// Returns a UTC midnight Date for the given input, independent of the
-// server's local timezone. Comparing dates via `date.setHours(0,0,0,0)`
-// uses the SERVER's local timezone offset, which previously caused a bug:
-// a due date submitted as "today" could get shifted a calendar day backward
-// (or forward) purely based on what timezone the Node process happens to be
-// running in, incorrectly failing the "cannot be in the past" check. Using
-// Date.UTC-based comparisons everywhere removes that dependency entirely.
+
 const startOfDayUTC = (d) => {
   const date = new Date(d);
   return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));

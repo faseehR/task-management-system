@@ -1,10 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/authRoutes');
-const taskRoutes = require('./routes/taskRoutes');
-const { errorHandler, notFound } = require('./middleware/errorHandler');
+const connectDB = require('../config/db');
+const authRoutes = require('../routes/authRoutes');
+const taskRoutes = require('../routes/taskRoutes');
+const { errorHandler, notFound } = require('../middleware/errorHandler');
 
 const app = express();
 

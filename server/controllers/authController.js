@@ -17,10 +17,7 @@ const sanitizeUser = (user) => ({
   email: user.email,
 });
 
-// POST /api/auth/signup
-// Creates the account only — does NOT issue a token. The user must log in
-// separately via POST /api/auth/login, matching the two distinct auth
-// flows described in the requirements (Login and Signup as separate pages/APIs).
+
 const signup = asyncHandler(async (req, res, next) => {
   const { name, email, password } = req.body;
 
